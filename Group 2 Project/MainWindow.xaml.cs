@@ -26,7 +26,9 @@ namespace Group_2_Project
         {
             InitializeComponent();
             DataContext db = new DataContext();
-            db.Users.ToList();
+
+            //Gets all the users from the db to a list object
+            var test = db.Users.ToList();
         }
     }
 }
