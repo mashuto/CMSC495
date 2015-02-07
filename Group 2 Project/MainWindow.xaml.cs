@@ -40,6 +40,7 @@ namespace Group_2_Project
         {
             using (var db = new DataContext())
             {
+                //normally we would encrypt data here to match encrypted data in the db
                 var users = db.Users.FirstOrDefault(x => x.UserName == UserName.Text);
                 if (users == null)
                 {
