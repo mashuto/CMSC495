@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Group_2_Project.Models
 {
-    class UserInformation
+    class UserData
     {
-        public int UserInformationId { get; set; }
+        public int UserDataId { get; set; }
         public User User { get; set; }
         public string Type { get; set; }
         public string Information { get; set; }
+        public string Comment { get; set; }
     }
 }

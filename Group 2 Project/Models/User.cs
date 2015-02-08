@@ -10,15 +10,13 @@ namespace Group_2_Project.Models
     {
         public User()
         {
-            Passwords = new List<UserPassword>();
-            Information = new List<UserInformation>();
+            UserData = new List<UserData>();
         }
 
         public int UserId { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
 
-        public virtual List<UserPassword> Passwords { get; set; }
-        public virtual List<UserInformation> Information { get; set; }
+        public virtual List<UserData> UserData { get; set; }
     }
 }

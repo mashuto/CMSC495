@@ -18,8 +18,7 @@ namespace Group_2_Project.DAL
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<UserPassword> Passwords { get; set; }
-        public DbSet<UserInformation> Information { get; set; }
+        public DbSet<UserData> UserData { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

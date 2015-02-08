@@ -18,32 +18,23 @@ namespace Group_2_Project.DAL
                 { 
                     UserName = "user1",
                     Password = "123456",
-                    Passwords = new List<UserPassword>
-                    { 
-                        new UserPassword
-                        { 
-                            Site = "amazon",
-                            UserName = "user1amazon",
-                            Password = "654321"
-                        },
-                        new UserPassword
-                        {
-                            Site = "yahoo",
-                            UserName = "user1yahoo",
-                            Password = "abc"
-                        }
-                    },
-                    Information = new List<UserInformation>
+                    UserData = new List<UserData>
                     {
-                        new UserInformation
+                        new UserData
                         {
                             Type = "Address",
                             Information = "123 Main St."
                         },
-                        new UserInformation
+                        new UserData
                         {
                             Type = "SSN",
                             Information = "123-45-6789"
+                        },
+                        new UserData
+                        {
+                            Type = "Amazon.com Password",
+                            Information = "123456",
+                            Comment = "UserName: amazonUser"
                         }
                     }
                 },
@@ -51,32 +42,23 @@ namespace Group_2_Project.DAL
                 { 
                     UserName = "user2",
                     Password = "123456",
-                    Passwords = new List<UserPassword>
-                    { 
-                        new UserPassword
-                        { 
-                            Site = "google",
-                            UserName = "user2google",
-                            Password = "test"
-                        },
-                        new UserPassword
-                        {
-                            Site = "facebook",
-                            UserName = "user2facebook",
-                            Password = "newtest"
-                        }
-                    },
-                    Information = new List<UserInformation>
+                    UserData = new List<UserData>
                     {
-                        new UserInformation
+                        new UserData
                         {
                             Type = "Address",
                             Information = "879 Second Ave."
                         },
-                        new UserInformation
+                        new UserData
                         {
                             Type = "SSN",
                             Information = "987-65-4321"
+                        },
+                        new UserData
+                        {
+                            Type = "Google Password",
+                            Information = "123456",
+                            Comment = "UserName: test@gmail.com"
                         }
                     }
                 }
