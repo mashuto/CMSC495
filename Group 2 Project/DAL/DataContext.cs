@@ -13,8 +13,9 @@ namespace Group_2_Project.DAL
     {
         public DataContext() : base("DataContext")
         {
-            Database.SetInitializer<DataContext>(new DataInitializer());
-            Configuration.ProxyCreationEnabled = false;
+            //This creates the database and adds the data
+            //Database.SetInitializer<DataContext>(new DataInitializer());
+            //Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<User> Users { get; set; }

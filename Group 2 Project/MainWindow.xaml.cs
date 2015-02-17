@@ -34,32 +34,7 @@ namespace Group_2_Project
             //test code to get a the first user where password is blank, then remove
             //var abc = db.Users.FirstOrDefault(x => x.Password == "");
             //db.Users.Remove(abc);
-        }
-
-        private void LoginClicked(object sender, RoutedEventArgs e)
-        {
-            using (var db = new DataContext())
-            {
-                //normally we would encrypt data here to match encrypted data in the db
-                var users = db.Users.FirstOrDefault(x => x.UserName == UserName.Text);
-                if (users == null)
-                {
-                    MessageBox.Show("User name not found");
-                }
-                else
-                {
-                    var currUser = db.Users.FirstOrDefault(x => x.UserName == UserName.Text && x.Password == Password.Text);
-                    if (currUser == null)
-                    {
-                        MessageBox.Show("Incorrect Password.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Logged in!");
-                        //call new page and pass currUser object to page
-                    }
-                }
-            }
+            MainFrame.Navigate(new Login());
         }
     }
 }
