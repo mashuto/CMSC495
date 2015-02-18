@@ -52,5 +52,10 @@ namespace Group_2_Project
                 }
             }
         }
+
+        private void AddNewUserButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AddUser());
+        }
     }
 }

@@ -14,6 +14,7 @@
         <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" Margin="92,204,0,0" VerticalAlignment="Top" Width="120" Click="Login_Clicked"/>
         <Label Content="User Name" HorizontalAlignment="Left" Margin="92,58,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="92,120,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="AddNewUserButton" Content="Add New User" HorizontalAlignment="Left" Margin="92,268,0,0" VerticalAlignment="Top" Width="120" Click="AddNewUserButton_Clicked"/>
 
     </Grid>
 </Page>

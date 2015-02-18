@@ -1,4 +1,5 @@
 ﻿using Group_2_Project.Models;
+using Group_2_Project.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,21 +18,27 @@ using System.Windows.Shapes;
 namespace Group_2_Project
 {
     /// <summary>
-    /// Interaction logic for UserDataPage.xaml
+    /// Interaction logic for AddDataPage.xaml
     /// </summary>
-    public partial class UserDataPage : Page
+    public partial class AddDataPage : Page
     {
         public User User { get; set; }
-        public UserDataPage(User user)
+
+        public AddDataPage(User user)
         {
             InitializeComponent();
             this.User = user;
-            TestLabel.Content = User.UserName + " has " + User.UserData.Count + " saved data items.";
         }
 
-        private void AddData_Clicked(object sender, RoutedEventArgs e)
+        private void Add_Clicked(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AddDataPage(User));
+            var userData = new UserData { Type = TypeBox.Text, Comment = CommentBox.Text, Information = InformationBox.Text, User = User };
+            using (var db = new DataContext())
+            {
+                db.UserData.Add(userData);
+                db.SaveChanges();
+                NavigationService.Navigate(new UserDataPage(db.Users.FirstOrDefault(x => x.UserId == User.UserId)));
+            }
         }
     }
 }

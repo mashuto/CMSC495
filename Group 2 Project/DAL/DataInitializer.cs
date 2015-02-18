@@ -10,6 +10,7 @@ namespace Group_2_Project.DAL
 {
     class DataInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<DataContext>
     {
+        /*
         protected override void Seed(DataContext context)
         {
             var users = new List<User>
@@ -67,5 +68,6 @@ namespace Group_2_Project.DAL
             users.ForEach(s => context.Users.Add(s));
             context.SaveChanges();
         }
+        */
     }
 }

@@ -25,15 +25,6 @@ namespace Group_2_Project
         public MainWindow()
         {
             InitializeComponent();
-            //DataContext db = new DataContext();
-
-            //Gets all the users from the db to a list object
-            //var test = db.Users.ToList();
-            //MessageBox.Show(test.First().UserName);
-
-            //test code to get a the first user where password is blank, then remove
-            //var abc = db.Users.FirstOrDefault(x => x.Password == "");
-            //db.Users.Remove(abc);
             MainFrame.Navigate(new Login());
         }
     }
