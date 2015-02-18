@@ -7,7 +7,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Frame x:Name="MainFrame" Content="Frame" HorizontalAlignment="Left" Height="346" Margin="10,10,0,0" VerticalAlignment="Top" Width="520" Grid.ColumnSpan="2"/>
+        <Frame x:Name="MainFrame" Content="Frame" HorizontalAlignment="Left" Height="346" Margin="10,10,0,0" VerticalAlignment="Top" Width="520" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden"/>
 
     </Grid>
 </Window>

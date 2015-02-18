@@ -46,6 +46,7 @@ namespace Group_2_Project
                     else
                     {
                         MessageBox.Show("Logged in!");
+                        NavigationService.Navigate(new UserDataPage(currUser));
                         //call new page and pass currUser object to page
                     }
                 }

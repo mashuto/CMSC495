@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Group_2_Project.Models
 {
-    class User
+    public class User
     {
         public User()
         {

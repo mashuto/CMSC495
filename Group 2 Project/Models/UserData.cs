@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Group_2_Project.Models
 {
-    class UserData
+    public class UserData
     {
         public int UserDataId { get; set; }
         public User User { get; set; }
