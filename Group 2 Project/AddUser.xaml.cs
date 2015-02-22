@@ -1,4 +1,12 @@
-﻿using Group_2_Project.DAL;
+﻿/****************************************************************
+ * AddUser.xaml.cs
+ * CMSC 495
+ * 
+ * Revisions:
+ * 2/22/2015    Matthew Kocin:      Initial Creation
+*****************************************************************/
+
+using Group_2_Project.DAL;
 using Group_2_Project.Models;
 using System;
 using System.Collections.Generic;

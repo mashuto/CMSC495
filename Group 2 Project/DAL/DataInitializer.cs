@@ -1,4 +1,12 @@
-﻿using System;
+﻿/****************************************************************
+ * DataInitializer.cs
+ * CMSC 495
+ * 
+ * Revisions:
+ * 2/22/2015    Matthew Kocin:      Initial Creation
+*****************************************************************/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
