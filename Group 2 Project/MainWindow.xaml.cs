@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Group_2_Project.Models;
 using Group_2_Project.DAL;
+using Group_2_Project.Repository;
 
 namespace Group_2_Project
 {

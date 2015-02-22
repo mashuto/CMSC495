@@ -31,7 +31,7 @@ namespace Group_2_Project
 
         private void AddData_Clicked(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AddDataPage(User));
+            NavigationService.Navigate(new AddDataPage(User.UserId));
         }
     }
 }

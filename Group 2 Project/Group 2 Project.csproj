@@ -69,6 +69,7 @@
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="UserDataPage.xaml.cs">
       <DependentUpon>UserDataPage.xaml</DependentUpon>
     </Compile>

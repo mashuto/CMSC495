@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Group_2_Project.Repository;
 
 namespace Group_2_Project
 {
@@ -22,22 +23,30 @@ namespace Group_2_Project
     /// </summary>
     public partial class AddDataPage : Page
     {
-        public User User { get; set; }
+        public int ID { get; set; }
 
-        public AddDataPage(User user)
+        public AddDataPage(int id)
         {
             InitializeComponent();
-            this.User = user;
+            this.ID = id;
         }
 
         private void Add_Clicked(object sender, RoutedEventArgs e)
         {
-            var userData = new UserData { Type = TypeBox.Text, Comment = CommentBox.Text, Information = InformationBox.Text, User = User };
-            using (var db = new DataContext())
+            try
             {
-                db.UserData.Add(userData);
-                db.SaveChanges();
-                NavigationService.Navigate(new UserDataPage(db.Users.FirstOrDefault(x => x.UserId == User.UserId)));
+                using (var db = new DataContext())
+                {
+                    var userRepository = new UserRepository(db);
+                    var user = userRepository.GetUserById(ID);
+                    var userData = new UserData { Type = TypeBox.Text, Comment = CommentBox.Text, Information = InformationBox.Text, User = user };
+                    userRepository.AddUserData(userData);
+                    NavigationService.Navigate(new UserDataPage(user));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("There was an error: " + ex.Message);
             }
         }
     }

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Group_2_Project.DAL;
+using Group_2_Project.Repository;
 
 namespace Group_2_Project
 {
@@ -28,28 +29,32 @@ namespace Group_2_Project
 
         private void Login_Clicked(object sender, RoutedEventArgs e)
         {
-            using (var db = new DataContext())
+            try
             {
-                //normally we would encrypt data here to match encrypted data in the db
-                var users = db.Users.FirstOrDefault(x => x.UserName == UserName.Text);
-                if (users == null)
+                using (var db = new DataContext())
                 {
-                    MessageBox.Show("User name not found");
-                }
-                else
-                {
-                    var currUser = db.Users.FirstOrDefault(x => x.UserName == UserName.Text && x.Password == Password.Text);
-                    if (currUser == null)
+                    var userRepository = new UserRepository(db);
+                    if (!userRepository.CheckUserNameExists(UserName.Text))
                     {
-                        MessageBox.Show("Incorrect Password.");
+                        MessageBox.Show("User name not found");
                     }
                     else
                     {
-                        MessageBox.Show("Logged in!");
-                        NavigationService.Navigate(new UserDataPage(currUser));
-                        //call new page and pass currUser object to page
+                        var user = userRepository.GetUserByUserNameAndPassword(UserName.Text, Password.Text);
+                        if (user == null)
+                        {
+                            MessageBox.Show("Incorrect Password.");
+                        }
+                        else
+                        {
+                            NavigationService.Navigate(new UserDataPage(user));
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("There was an error: " + ex.Message);
             }
         }
 

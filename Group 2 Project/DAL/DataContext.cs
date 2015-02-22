@@ -9,7 +9,7 @@ using Group_2_Project.Models;
 
 namespace Group_2_Project.DAL
 {
-    class DataContext : DbContext
+    public class DataContext : DbContext
     {
         public DataContext() : base("DataContext")
         {
