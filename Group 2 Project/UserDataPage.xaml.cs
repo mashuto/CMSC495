@@ -21,11 +21,27 @@ namespace Group_2_Project
     /// </summary>
     public partial class UserDataPage : Page
     {
+
+        class GridData
+        {
+            public string Type { get; set; }
+            public string Information { get; set; }
+            public string Comments { get; set; }
+        }
+
         public User User { get; set; }
         public UserDataPage(User user)
         {
             InitializeComponent();
             this.User = user;
+            IList<GridData> userData = new List<GridData>();
+            foreach (var data in user.UserData)
+            {
+                userData.Add(new GridData { Type = data.Type, Information = data.Information, Comments = data.Comment });
+            }
+            UserDataGrid.ItemsSource = userData;
+            UserDataGrid.IsReadOnly = true;
+            
             TestLabel.Content = User.UserName + " has " + User.UserData.Count + " saved data items.";
         }
 
