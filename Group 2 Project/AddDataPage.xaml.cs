@@ -4,6 +4,7 @@
  * 
  * Revisions:
  * 2/22/2015    Matthew Kocin:      Initial Creation
+ * 3/01/2015    Matthew Kocin       Added encryption selection
 *****************************************************************/
 
 using Group_2_Project.Models;
@@ -47,7 +48,17 @@ namespace Group_2_Project
                 {
                     var userRepository = new UserRepository(db);
                     var user = userRepository.GetUserById(ID);
-                    var userData = new UserData { Type = TypeBox.Text, Comment = CommentBox.Text, Information = InformationBox.Text, User = user };
+                    var key = Crypto.GenerateRandomKey();
+                    int encrypt = 0;
+                    if (Aes.IsChecked == true)
+                    {
+                        encrypt = 0;
+                    }
+                    else if (TripleDES.IsChecked == true)
+                    {
+                        encrypt = 1;
+                    }
+                    var userData = new UserData { Type = TypeBox.Text, Comment = CommentBox.Text, Information = Crypto.Encrypt(key, InformationBox.Text, (EncryptionAlgorithm)encrypt), Key = key, Encryption = encrypt, User = user };
                     userRepository.AddUserData(userData);
                     NavigationService.Navigate(new UserDataPage(user));
                 }

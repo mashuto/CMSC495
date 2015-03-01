@@ -4,10 +4,12 @@
  * 
  * Revisions:
  * 2/22/2015    Matthew Kocin:      Initial Creation
+ * 3/01/2015    Matthew Kocin       Updates to use repository and encryption
 *****************************************************************/
 
 using Group_2_Project.DAL;
 using Group_2_Project.Models;
+using Group_2_Project.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,14 +41,16 @@ namespace Group_2_Project
         {
             using (var db = new DataContext())
             {
+                var userRepository = new UserRepository(db);
                 if (UserNameBox.Text == "")
                 {
                     MessageBox.Show("User Name Cannot be Blank.");
                 }
                 else
                 {
-                    var existingUser = db.Users.SingleOrDefault(x => x.UserName == UserNameBox.Text);
-                    if (existingUser != null)
+                    var test = userRepository.CheckUserNameExists(UserNameBox.Text);
+                    
+                    if (userRepository.CheckUserNameExists(UserNameBox.Text))
                     {
                         MessageBox.Show("This user name already exists. Please choose another.");
                     }
@@ -60,8 +64,9 @@ namespace Group_2_Project
                     }
                     else
                     {
-                        var user = new User { UserName = UserNameBox.Text, Password = Password1Box.Text };
-                        db.Users.Add(user);
+                        string key = Crypto.GenerateRandomKey();
+                        var user = new User { UserName = UserNameBox.Text, Password = Crypto.Encrypt(key, Password1Box.Text, (EncryptionAlgorithm)0), Key = key };
+                        userRepository.AddUser(user);
                         NavigationService.Navigate(new UserDataPage(user));
                     }
                 }

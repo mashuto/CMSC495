@@ -4,6 +4,7 @@
  * 
  * Revisions:
  * 2/22/2015    Matthew Kocin:      Initial Creation
+ * 3/01/2015    Matthew Kocin       when getting user, encrypt pass to check against db
 *****************************************************************/
 
 using Group_2_Project.DAL;
@@ -32,7 +33,9 @@ namespace Group_2_Project.Repository
 
         public User GetUserByUserNameAndPassword(string userName, string password)
         {
-            return context.Users.FirstOrDefault(x => x.UserName == userName && x.Password == password);
+            var key = context.Users.FirstOrDefault(x => x.UserName == userName).Key;
+            var encryptedPass = Crypto.Encrypt(key, password, (EncryptionAlgorithm)0);
+            return context.Users.FirstOrDefault(x => x.UserName == userName && x.Password == encryptedPass);
         }
 
         public User GetUserById(int id)

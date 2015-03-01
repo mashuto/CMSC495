@@ -1,4 +1,14 @@
-﻿<Page x:Class="Group_2_Project.AddDataPage"
+﻿<!-- 
+ * AddDataPage.xaml
+ * CMSC 495
+ * 
+ * Revisions:
+ * 2/22/2015    Matthew Kocin:      Initial Creation
+ * 3/01/2015    Matthew Kocin       Added encryption radio button selection    
+    
+ -->
+    
+    <Page x:Class="Group_2_Project.AddDataPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,10 +18,12 @@
 	Title="AddDataPage">
 
     <Grid>
-        <TextBox x:Name="TypeBox" HorizontalAlignment="Left" Height="22" Margin="84,65,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="InformationBox" HorizontalAlignment="Left" Height="23" Margin="84,114,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="CommentBox" HorizontalAlignment="Left" Height="23" Margin="84,162,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="AddButton" Content="Add" HorizontalAlignment="Left" Margin="84,210,0,0" VerticalAlignment="Top" Width="120" Click="Add_Clicked"/>
+        <TextBox x:Name="TypeBox" HorizontalAlignment="Left" Height="22" Margin="84,36,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="InformationBox" HorizontalAlignment="Left" Height="23" Margin="84,85,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="CommentBox" HorizontalAlignment="Left" Height="23" Margin="84,133,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="AddButton" Content="Add" HorizontalAlignment="Left" Margin="84,244,0,0" VerticalAlignment="Top" Width="120" Click="Add_Clicked"/>
+        <RadioButton x:Name="Aes" GroupName="Encryption" Content="Aes" HorizontalAlignment="Left" Margin="84,178,0,0" VerticalAlignment="Top" IsChecked="True"/>
+        <RadioButton x:Name="TripleDES" GroupName="Encryption" Content="Triple DES" HorizontalAlignment="Left" Margin="84,198,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>

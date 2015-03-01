@@ -4,6 +4,7 @@
  * 
  * Revisions:
  * 2/22/2015    Matthew Kocin:      Initial Creation
+ * 3/01/2015    Matthew Kocin       Updated to decrypt data properly
 *****************************************************************/
 
 using Group_2_Project.Models;
@@ -45,7 +46,7 @@ namespace Group_2_Project
             IList<GridData> userData = new List<GridData>();
             foreach (var data in user.UserData)
             {
-                userData.Add(new GridData { Type = data.Type, Information = data.Information, Comments = data.Comment });
+                userData.Add(new GridData { Type = data.Type, Information = Crypto.Decrypt(data.Key, data.Information, (EncryptionAlgorithm)data.Encryption), Comments = data.Comment });
             }
             UserDataGrid.ItemsSource = userData;
             UserDataGrid.IsReadOnly = true;
