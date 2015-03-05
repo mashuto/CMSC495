@@ -5,6 +5,7 @@
  * Revisions:
  * 2/22/2015    Matthew Kocin:      Initial Creation
  * 3/01/2015    Matthew Kocin       when getting user, encrypt pass to check against db
+ * 3/04/2015    Matthew Kocin       Added some methods to support editing
 *****************************************************************/
 
 using Group_2_Project.DAL;
@@ -58,6 +59,17 @@ namespace Group_2_Project.Repository
         public IQueryable<UserData> GetUserData(User user)
         {
             return context.UserData.Where(x => x.User == user);
+        }
+
+        public void UpdateUserData(UserData userData)
+        {
+            context.UserData.Attach(userData);
+            context.SaveChanges();
+        }
+
+        public UserData GetUserDataById(int id)
+        {
+            return context.UserData.FirstOrDefault(x => x.UserDataId == id);
         }
     }
 }
