@@ -41,7 +41,7 @@
             </Button.BitmapEffect>
         </Button>
         <DataGrid x:Name="UserDataGrid" HorizontalAlignment="Left" Margin="24,22,0,0" VerticalAlignment="Top" Height="279" Width="553" SelectionMode="Single" AutoGeneratingColumn="OnGenerating"/>
-        <Button Content="Delete Selected" HorizontalAlignment="Left" Margin="477,344,0,0" VerticalAlignment="Top" Width="100">
+        <Button Content="Delete Selected" HorizontalAlignment="Left" Margin="477,344,0,0" VerticalAlignment="Top" Width="100" Click="Delete_Clicked">
             <Button.BitmapEffect>
                 <DropShadowBitmapEffect Color="Black" Direction="320" ShadowDepth="25" Softness="1" Opacity="0.5"/>
             </Button.BitmapEffect>

@@ -63,13 +63,19 @@ namespace Group_2_Project.Repository
 
         public void UpdateUserData(UserData userData)
         {
-            context.UserData.Attach(userData);
+            context.Entry(userData).State = System.Data.Entity.EntityState.Modified;
             context.SaveChanges();
         }
 
         public UserData GetUserDataById(int id)
         {
             return context.UserData.FirstOrDefault(x => x.UserDataId == id);
+        }
+
+        public void DeleteUserData(UserData userData)
+        {
+            context.UserData.Remove(userData);
+            context.SaveChanges();
         }
     }
 }

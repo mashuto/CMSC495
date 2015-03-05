@@ -48,7 +48,7 @@ namespace Group_2_Project
             InitializeComponent();
             this.User = user;
             IList<GridData> userData = new List<GridData>();
-            foreach (var data in user.UserData)
+            foreach (var data in user.UserData.OrderBy(x => x.UserDataId))
             {
                 userData.Add(new GridData { Type = data.Type, Information = Crypto.Decrypt(data.Key, data.Information, (EncryptionAlgorithm)data.Encryption), Comments = data.Comment, ID = data.UserDataId });
             }
@@ -67,6 +67,18 @@ namespace Group_2_Project
             {
                 e.Cancel = true;
             }
+            if (e.PropertyName.ToLower() == "type")
+            {
+                e.Column.Width = new DataGridLength(20, DataGridLengthUnitType.Star);
+            }
+            if (e.PropertyName.ToLower() == "information")
+            {
+                e.Column.Width = new DataGridLength(50, DataGridLengthUnitType.Star);
+            }
+            if (e.PropertyName.ToLower() == "comments")
+            {
+                e.Column.Width = new DataGridLength(30, DataGridLengthUnitType.Star);
+            }
         }
 
         private void Edit_Clicked(object sender, RoutedEventArgs e)
@@ -81,7 +93,29 @@ namespace Group_2_Project
                     userData = userRepository.GetUserDataById(data.ID);
                     userData.User = User;
                 }
-                NavigationService.Navigate(new EditDataPage(userData));
+                NavigationService.Navigate(new EditDataPage(userData, User.UserId));
+            }
+        }
+
+        private void Delete_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (UserDataGrid.SelectedItem != null)
+            {
+                if (MessageBox.Show("Really Delete? This cannot be undone.", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+                {
+                    //do no stuff
+                }
+                else
+                {
+                    using (var db = new DataContext())
+                    {
+                        var gridData = (GridData)UserDataGrid.SelectedItem;
+                        var userRepository = new UserRepository(db);
+                        var userData = userRepository.GetUserDataById(gridData.ID);
+                        userRepository.DeleteUserData(userData);
+                        NavigationService.Navigate(new UserDataPage(userRepository.GetUserById(User.UserId)));
+                    }
+                }
             }
         }
     }
