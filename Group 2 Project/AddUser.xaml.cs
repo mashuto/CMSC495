@@ -72,5 +72,10 @@ namespace Group_2_Project
                 }
             }
         }
+
+        private void Cancel_Clicked(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

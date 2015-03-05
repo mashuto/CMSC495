@@ -13,11 +13,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="400" d:DesignWidth="600"
+      d:DesignHeight="450" d:DesignWidth="600"
       ShowsNavigationUI="False"
 	Title="UserDataPage">
 
-    <Grid x:Name="LayoutRoot" Margin="0,0,0,0"  Width="600" Height="400">
+    <Grid x:Name="LayoutRoot" Margin="0,0,0,0"  Width="600" Height="450">
         <Grid.OpacityMask>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="Black" Offset="0"/>

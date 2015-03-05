@@ -4,6 +4,7 @@
  * 
  * Revisions:
  * 2/22/2015    Matthew Kocin:      Initial Creation
+ * 3/05/2015    Matthew Kocin       Updated to hopefully allow proper deployment
 *****************************************************************/
 
 using System;
@@ -21,8 +22,9 @@ namespace Group_2_Project.DAL
     {
         public DataContext() : base("DataContext")
         {
+            AppDomain.CurrentDomain.SetData("DataDirectory", System.IO.Directory.GetCurrentDirectory());
             //This creates the database and adds the data
-            //Database.SetInitializer<DataContext>(new DataInitializer());
+            Database.SetInitializer<DataContext>(new DataInitializer());
             //Configuration.ProxyCreationEnabled = false;
         }
 
