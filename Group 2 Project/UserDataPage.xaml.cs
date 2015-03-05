@@ -6,6 +6,7 @@
  * 2/22/2015    Matthew Kocin:      Initial Creation
  * 3/01/2015    Matthew Kocin       Updated to decrypt data properly
  * 3/03/2015    Matthew Kocin       Added initial code to start allow editing records
+ * 3/04/2015    Matthew Kocin       Finished adding editing ability. Added Delete ability.
 *****************************************************************/
 
 using Group_2_Project.DAL;
@@ -101,11 +102,7 @@ namespace Group_2_Project
         {
             if (UserDataGrid.SelectedItem != null)
             {
-                if (MessageBox.Show("Really Delete? This cannot be undone.", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
-                {
-                    //do no stuff
-                }
-                else
+                if (MessageBox.Show("Really Delete? This cannot be undone.", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
                     using (var db = new DataContext())
                     {
