@@ -6,6 +6,7 @@
  * 2/22/2015    Matthew Kocin:      Initial Creation
  * 3/01/2015    Matthew Kocin       when getting user, encrypt pass to check against db
  * 3/04/2015    Matthew Kocin       Added some methods to support editing
+ * 3/06/2015    Matthew Kocin       Added a method to get user data by user
 *****************************************************************/
 
 using Group_2_Project.DAL;
@@ -76,6 +77,11 @@ namespace Group_2_Project.Repository
         {
             context.UserData.Remove(userData);
             context.SaveChanges();
+        }
+
+        public List<UserData> GetUserDataByUser(User user)
+        {
+            return context.UserData.Where(x => x.User.UserId == user.UserId).ToList();
         }
     }
 }

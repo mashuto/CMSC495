@@ -4,6 +4,7 @@
  * 
  * Revisions:
  * 3/04/2015    Matthew Kocin:      Initial Creation
+ * 3/06/2015    Matthew Kocin       Wrapped db connection in try catch block
 *****************************************************************/
 
 using Group_2_Project.DAL;
@@ -45,16 +46,22 @@ namespace Group_2_Project
 
         private void Update_Clicked(object sender, RoutedEventArgs e)
         {
-            
-            using (var db = new DataContext())
+            try
             {
-                var userRepository = new UserRepository(db);
-                var userData = userRepository.GetUserDataById(id);
-                userData.Type = TypeBox.Text;
-                userData.Information = Crypto.Encrypt(userData.Key, InformationBox.Text, (EncryptionAlgorithm)userData.Encryption);
-                userData.Comment = CommentBox.Text;
-                userRepository.UpdateUserData(userData);
-                NavigationService.Navigate(new UserDataPage(userRepository.GetUserById(userId)));
+                using (var db = new DataContext())
+                {
+                    var userRepository = new UserRepository(db);
+                    var userData = userRepository.GetUserDataById(id);
+                    userData.Type = TypeBox.Text;
+                    userData.Information = Crypto.Encrypt(userData.Key, InformationBox.Text, (EncryptionAlgorithm)userData.Encryption);
+                    userData.Comment = CommentBox.Text;
+                    userRepository.UpdateUserData(userData);
+                    NavigationService.Navigate(new UserDataPage(userRepository.GetUserById(userId)));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("There was an error: " + ex.Message);
             }
         }
 

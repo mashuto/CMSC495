@@ -5,6 +5,7 @@
  * Revisions:
  * 2/22/2015    Matthew Kocin:      Initial Creation
  * 3/01/2015    Matthew Kocin       Updates to use repository and encryption
+ * 3/06/2015    Matthew Kocin       Updated error message to show inner exception
 *****************************************************************/
 
 using Group_2_Project.DAL;
@@ -39,37 +40,44 @@ namespace Group_2_Project
 
         private void AddUser_Clicked(object sender, RoutedEventArgs e)
         {
-            using (var db = new DataContext())
+            try
             {
-                var userRepository = new UserRepository(db);
-                if (UserNameBox.Text == "")
+                using (var db = new DataContext())
                 {
-                    MessageBox.Show("User Name Cannot be Blank.");
-                }
-                else
-                {
-                    var test = userRepository.CheckUserNameExists(UserNameBox.Text);
-                    
-                    if (userRepository.CheckUserNameExists(UserNameBox.Text))
+                    var userRepository = new UserRepository(db);
+                    if (UserNameBox.Text == "")
                     {
-                        MessageBox.Show("This user name already exists. Please choose another.");
-                    }
-                    else if (Password1Box.Text != Password2Box.Text)
-                    {
-                        MessageBox.Show("Passwords do not match.");
-                    }
-                    else if (Password1Box.Text == "" || Password2Box.Text == "")
-                    {
-                        MessageBox.Show("Password cannot be blank.");
+                        MessageBox.Show("User Name Cannot be Blank.");
                     }
                     else
                     {
-                        string key = Crypto.GenerateRandomKey();
-                        var user = new User { UserName = UserNameBox.Text, Password = Crypto.Encrypt(key, Password1Box.Text, (EncryptionAlgorithm)0), Key = key };
-                        userRepository.AddUser(user);
-                        NavigationService.Navigate(new UserDataPage(user));
+                        var test = userRepository.CheckUserNameExists(UserNameBox.Text);
+
+                        if (userRepository.CheckUserNameExists(UserNameBox.Text))
+                        {
+                            MessageBox.Show("This user name already exists. Please choose another.");
+                        }
+                        else if (Password1Box.Text != Password2Box.Text)
+                        {
+                            MessageBox.Show("Passwords do not match.");
+                        }
+                        else if (Password1Box.Text == "" || Password2Box.Text == "")
+                        {
+                            MessageBox.Show("Password cannot be blank.");
+                        }
+                        else
+                        {
+                            string key = Crypto.GenerateRandomKey();
+                            var user = new User { UserName = UserNameBox.Text, Password = Crypto.Encrypt(key, Password1Box.Text, (EncryptionAlgorithm)0), Key = key };
+                            userRepository.AddUser(user);
+                            NavigationService.Navigate(new UserDataPage(user));
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("There was an error: " + ex.Message + ex.InnerException.Message);
             }
         }
 

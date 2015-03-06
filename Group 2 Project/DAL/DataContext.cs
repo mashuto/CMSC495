@@ -5,6 +5,7 @@
  * Revisions:
  * 2/22/2015    Matthew Kocin:      Initial Creation
  * 3/05/2015    Matthew Kocin       Updated to hopefully allow proper deployment
+ * 3/06/2015    Matthew Kocin       Some updates to allow for proper deployment
 *****************************************************************/
 
 using System;
@@ -22,10 +23,13 @@ namespace Group_2_Project.DAL
     {
         public DataContext() : base("DataContext")
         {
-            AppDomain.CurrentDomain.SetData("DataDirectory", System.IO.Directory.GetCurrentDirectory());
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DataContext>());
+            //Database.SetInitializer<DataContext>(null);
+            //AppDomain.CurrentDomain.SetData("DataDirectory", System.IO.Directory.GetCurrentDirectory());
+            AppDomain.CurrentDomain.SetData("DataDirectory", "C:\\Users\\Public\\");
             //This creates the database and adds the data
             Database.SetInitializer<DataContext>(new DataInitializer());
-            //Configuration.ProxyCreationEnabled = false;
+            Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<User> Users { get; set; }

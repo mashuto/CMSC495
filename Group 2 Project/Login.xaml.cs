@@ -4,6 +4,7 @@
  * 
  * Revisions:
  * 2/22/2015    Matthew Kocin:      Initial Creation
+ * 3/06/2015    Matthew Kocin       Minor modification to show inner exception in error message
 *****************************************************************/
 
 using System;
@@ -62,7 +63,7 @@ namespace Group_2_Project
             }
             catch (Exception ex)
             {
-                MessageBox.Show("There was an error: " + ex.Message);
+                MessageBox.Show("There was an error: " + ex.Message + ex.InnerException.Message);
             }
         }
 
